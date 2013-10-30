@@ -1,0 +1,2 @@
+// Bookmarklet
+javascript:var betterlink;betterlink||function(a,b,c){var d,e=a.getElementsByTagName(b)[0];a.getElementById(c)||(d=a.createElement(b),d.id=c,d.defer=!0,d.src="//code.betterlink.co/betterlink.js",d.setAttribute("data-script-source","bookmarklet"),e.parentNode.insertBefore(d,e))}(document,"script","betterlink-js");
