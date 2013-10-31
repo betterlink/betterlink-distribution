@@ -13,8 +13,7 @@ If you are interested in creating a new distribution, please consider updating t
 Note that some sites (ex: github.com) enforce a Content Security Policy that prevents loading external resources, as we attempt to do with these extensions.
 
 
-Chrome Extension <small>(to install locally)</small>
--------------
+<h2>Chrome Extension <small>(to install locally)</small></h2>
 
 2. Within chrome, go to `chrome://extensions`
 3. Select 'Developer mode' checkbox
@@ -22,3 +21,8 @@ Chrome Extension <small>(to install locally)</small>
 5. Choose directory at `betterlink-distribution/chrome-extension/`
 6. Celebrate, because every webpage is now enabled for super-sharing
   - Changes to the Chrome Extension can be refreshed by going back to `chrome://extensions` and hitting 'reload'
+
+License
+---------
+
+This library is distributed under the Apache 2.0 License found in the [LICENSE](https://github.com/betterlink/betterlink-distribution/blob/master/LICENSE.txt) file.
