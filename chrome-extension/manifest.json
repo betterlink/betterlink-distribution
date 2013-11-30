@@ -5,8 +5,13 @@
   "description": "Load and share links to text within a page",
   "version": "1.0",
 
+  "author": "Ben Getson",
+  "homepage_url": "http://betterlink.io",
+
   "icons": { "48": "icons/betterlink-icon-48.png",
              "128": "icons/betterlink-icon-128.png" },
+  "incognito": "spanning",
+  "short_name": "Betterlink",
 
   "content_scripts": [
     {
