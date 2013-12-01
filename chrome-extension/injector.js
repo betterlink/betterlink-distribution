@@ -1,12 +1,15 @@
 var betterlink;
 if(!betterlink){
   (function(d,s,id){
-    var js,scripts = d.getElementsByTagName(s),fjs = scripts[0];
+    // We can't inject relative to the first script on the page because
+    // there may not be any. This javascript is run in an isolated world.
+    var scripts = d.getElementsByTagName(s);
+    var node = d.getElementsByTagName('head')[0] || d.body;
     if(!d.getElementById(id) && !scriptsInDomWithBetterlinkSource(scripts)) {
       js=d.createElement(s); js.id = id; js.defer = true;
       js.setAttribute('data-script-source','chrome extension');
       js.src="//code.betterlink.io/betterlink.js";
-      fjs.parentNode.insertBefore(js,fjs);}
+      node.appendChild(js);}
   }(document,'script','betterlink-js'));
 
   // Chrome Extensions run in an 'isolated world' and cannot
