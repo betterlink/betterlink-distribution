@@ -3,7 +3,7 @@
 
   "name": "Betterlink",
   "description": "Create and share personalized links to text within a webpage",
-  "version": "1.1",
+  "version": "1.2",
 
   "author": "Betterlink",
   "homepage_url": "http://betterlink.io",
@@ -12,6 +12,16 @@
              "128": "icons/betterlink-icon-128.png" },
   "incognito": "spanning",
   "short_name": "Betterlink",
+
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
 
   "content_scripts": [
     {
