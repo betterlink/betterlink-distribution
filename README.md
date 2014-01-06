@@ -10,8 +10,6 @@ These types of distributions allow you to enable Betterlink on any website you v
 
 If you are interested in creating a new distribution, please consider updating the `data-script-source` attribute (as exampled in the source of current options). This will help us understand the use of Betterlink before individual sites enable this feature for everybody.
 
-Note that some sites (ex: github.com) enforce a Content Security Policy that prevents loading external resources, as we attempt to do with these extensions.
-
 
 <h2>Chrome Extension <small>(to install locally)</small></h2>
 
