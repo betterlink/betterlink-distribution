@@ -3,7 +3,7 @@
 
   "name": "Betterlink",
   "description": "Create and share personalized links to text within a webpage",
-  "version": "1.2",
+  "version": "1.3",
 
   "author": "Betterlink",
   "homepage_url": "http://betterlink.io",
@@ -19,7 +19,7 @@
     "<all_urls>"
   ],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["background.js", "broadcaster.js"],
     "persistent": true
   },
 
@@ -29,5 +29,9 @@
       "js": ["injector.js"],
       "run_at": "document_idle"
     }
-  ]
+  ],
+
+  "externally_connectable": {
+    "matches": ["*://*.betterlink.io/*"]
+  }
 }
