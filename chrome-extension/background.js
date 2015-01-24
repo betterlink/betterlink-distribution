@@ -20,6 +20,7 @@ chrome.webRequest.onHeadersReceived.addListener(function(details) {
       csp = csp.replace('script-src', 'script-src code.betterlink.io');
       csp = csp.replace('style-src', 'style-src code.betterlink.io');
       csp = csp.replace('img-src', 'img-src code.betterlink.io');
+      csp = csp.replace('connect-src', 'connect-src api.betterlink.co');
       csp = handleStyleSrcNonce(csp, details.url);
 
       details.responseHeaders[i].value = csp;
