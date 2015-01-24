@@ -16,8 +16,8 @@ chrome.webRequest.onHeadersReceived.addListener(function(details) {
       var csp = details.responseHeaders[i].value;
 
       // append "//code.betterlink.io" to the authorized sites
-      csp = csp.replace('script-src', 'script-src https://code.betterlink.io http://code.betterlink.io');
-      csp = csp.replace('style-src', 'style-src https://code.betterlink.io http://code.betterlink.io');
+      csp = csp.replace('script-src', 'script-src code.betterlink.io');
+      csp = csp.replace('style-src', 'style-src code.betterlink.io');
       csp = handleStyleSrcNonce(csp, details.url);
 
       details.responseHeaders[i].value = csp;
