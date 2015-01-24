@@ -8,7 +8,6 @@
  */
 var styleSrcRegex = /\bstyle-src\b/;
 var nonceRegex = /style-src[^;]*'nonce-([^']*)'/;
-var nonceValues = {};
 
 chrome.webRequest.onHeadersReceived.addListener(function(details) {
   for (i = 0; i < details.responseHeaders.length; i++) {
@@ -36,7 +35,23 @@ chrome.webRequest.onHeadersReceived.addListener(function(details) {
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if(request.checkNonce) {
-      sendResponse({nonce: nonceValues[sender.tab.url]});
+      chrome.storage.local.get(sender.tab.url, function(items) {
+        if(items && items[sender.tab.url]) {
+          // clean up the nonce value that was stored so it's
+          // not accidentally referenced by a future call to
+          // this URL (ex: if the page no longer has CSP).
+          var nonceValue = items[sender.tab.url];
+          chrome.storage.local.remove(sender.tab.url);
+
+          sendResponse({nonce: nonceValue});
+        }
+        else {
+          sendResponse({nonce: ''});
+        }
+      });
+
+      // keep addListener connection open for callback
+      return true;
     }
   }
 );
@@ -53,13 +68,16 @@ function isCSPHeader(headerName) {
 function handleStyleSrcNonce(csp, url) {
   if(styleSrcRegex.test(csp)) {
     var match = nonceRegex.exec(csp);
+    var storage = {};
     if(match) {
-      nonceValues[url] = match[1];
+      storage[url] = match[1];
+      chrome.storage.local.set(storage);
     }
     else {
       var random = generateRandom();
       csp = csp.replace("style-src", "style-src 'nonce-" + random + "'");
-      nonceValues[url] = random;
+      storage[url] = random;
+      chrome.storage.local.set(storage);
     }
   }
 
