@@ -7,6 +7,7 @@
  * https://www.planbox.com/blog/development/coding/bypassing-githubs-content-security-policy-chrome-extension.html
  */
 var styleSrcRegex = /\bstyle-src\b/;
+var unsafeInlineRegex = /style-src[^;]*'unsafe-inline'/;
 var nonceRegex = /style-src[^;]*'nonce-([^']*)'/;
 
 chrome.webRequest.onHeadersReceived.addListener(function(details) {
@@ -62,7 +63,8 @@ function isCSPHeader(headerName) {
 }
 
 // If the 'style-src' directive is supplied, then check if a nonce
-// is provided as well. If so, use it. If not, create one.
+// is provided as well. If so, use it. If not and there is no 'unsafe-
+// inline', then create a new nonce.
 //
 // This is needed to allow us to create inline styles via Betterlink.
 // http://www.w3.org/TR/CSP2/#script-src-nonce-usage
@@ -74,7 +76,7 @@ function handleStyleSrcNonce(csp, url) {
       storage[url] = match[1];
       chrome.storage.local.set(storage);
     }
-    else {
+    else if(!unsafeInlineRegex.test(csp)) {
       var random = generateRandom();
       csp = csp.replace("style-src", "style-src 'nonce-" + random + "'");
       storage[url] = random;
