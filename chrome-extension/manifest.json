@@ -21,13 +21,6 @@
   ],
   "background": {
     "scripts": ["background.js", "broadcaster.js"],
-
-    // Goal is to make the background scripts execute as Event Pages
-    // https://developer.chrome.com/extensions/event_pages
-    //
-    // The webRequest API isn't supported by Event Pages, so we need
-    // to wait until declarativeWebRequest is stable
-    // https://developer.chrome.com/extensions/declarativeWebRequest
     "persistent": true
   },
 
