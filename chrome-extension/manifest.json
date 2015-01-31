@@ -3,7 +3,7 @@
 
   "name": "Betterlink",
   "description": "Create and share personalized links to text within a webpage",
-  "version": "1.6.1",
+  "version": "1.6.2",
 
   "author": "Betterlink",
   "homepage_url": "http://betterlink.io",
@@ -27,7 +27,11 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "exclude_globs": ["*://mail.google.*/*", "*://www.facebook.*/*"],
+      "exclude_globs": [
+        "*://mail.google.*/*",
+        "*://www.facebook.*/*",
+        "*://*mail.yahoo.*/*"
+      ],
       "js": ["injector.js"],
       "run_at": "document_idle"
     }
